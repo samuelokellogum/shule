@@ -279,9 +279,45 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'assignSub'
         ]);
 
+        Route::get('/viewSubjectTeachers/{subject_id}/{class_id}/{class_name}',[
+            'uses' => 'SubjectC@viewSubjectTeachers',
+            'as' => 'viewSubTeachers'
+        ]);
+
+        Route::post('/removeTeacher',[
+            'uses' => 'SubjectC@removeTeacher',
+            'as' => 'removeTeacher'
+        ]);
+
         /*
        |-------------
        |End subject routes
+       |---------------------------
+       */
+
+
+
+        /*
+       |-------------
+       |Grading routes
+       |---------------------------
+       */
+
+        Route::get('/viewGrading',[
+            'uses' => 'GradingC@viewGrading',
+            'as' => 'viewGrading'
+        ]);
+
+        Route::post('/addGrading',[
+            'uses' => 'GradingC@addGrading',
+            'as' => 'addGrading'
+        ]);
+
+
+
+        /*
+       |-------------
+       |End grading routes
        |---------------------------
        */
 
