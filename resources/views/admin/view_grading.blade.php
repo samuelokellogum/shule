@@ -16,10 +16,12 @@
 
                     <div class="col-md-2 col-sm-3 col-xs-12 form-group">
                         <select class="form-control" id="subject-select" name="subject" data-required="true"  data-trigger="change" required="required">
-                            <option value="">Choose Grading type</option>
-                            <option value="1">General grading</option>
-                            <option value="2">Class grading</option>
-                            <option value="3">Subject grading</option>
+                            <option value="">Choose subject</option>
+                            @if(isset($subjects))
+                                @foreach($subjects as $row)
+                                    <option value="{{ $row->subject_id }}">{{ $row->subject_name.'  '.$row->subject_code }}</option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
 

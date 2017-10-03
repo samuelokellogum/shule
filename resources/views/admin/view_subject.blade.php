@@ -1,9 +1,9 @@
 @extends('main')
 @section('content')
 
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <a href="{{ route('viewAssigSub') }}" class="btn btn-info pull-right">Assign Subject  <i class="fa fa-arrow-right"></i></a>
-    </div>
+    {{--<div class="col-md-12 col-sm-12 col-xs-12">
+        <a href="{{ route('viewAssigSub') }}" class="btn btn-info pull-right">Assign Subject 1 <i class="fa fa-arrow-right"></i></a>
+    </div>--}}
 
     <!-- panel -->
     <div class="col-md-4 col-sm-12 col-xs-12">
@@ -86,6 +86,7 @@
                             @endif
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>

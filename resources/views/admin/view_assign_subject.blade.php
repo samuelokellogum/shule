@@ -3,7 +3,7 @@
 
     <div class="col-md-12 col-sm-12 col-xs-12">
         <a href="#" onclick="showModal()" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Assign Subject</a>
-        <a href="{{ route('viewSubject') }}" class="btn btn-success pull-left"><i class="fa fa-arrow-left"></i> Back</a>
+        <a href="{{ route('viewSubject') }}" class="btn btn-success pull-left"><i class="fa fa-arrow-left"></i>  Go back</a>
     </div>
 
     <!-- panel -->
@@ -20,15 +20,28 @@
                     <tr>
                         <th>No</th>
                         <th>Subject name</th>
+                        <th>Subject code</th>
                         <th>Class</th>
                         <th>Teachers</th>
                         <th>Action</th>
                     </tr>
                     </thead>
 
-
                     <tbody>
-
+                      @if(isset($tabledata))
+                          <?php $count = 1; ?>
+                          @foreach($tabledata as $row)
+                              <tr>
+                                  <td>{{ $count }}</td>
+                                  <td>{{ $row->subject_name }}</td>
+                                  <td>{{ $row->subject_code }}</td>
+                                  <td>{{ $row->class }}</td>
+                                  <td> <a href="{{ route('viewSubTeachers',['subject_id' => $row->subject_id, 'class_id' => $row->class_id, 'class_name' => $row->class_name]) }}"> @if($row->teachers > 1) {{ $row->teachers }} Teachers @else  {{ $row->teachers }} Teacher @endif </a> </td>
+                                  <td></td>
+                              </tr>
+                              <?php $count++; ?>
+                              @endforeach
+                          @endif
                     </tbody>
                 </table>
             </div>

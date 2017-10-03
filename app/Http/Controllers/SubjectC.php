@@ -114,11 +114,28 @@ class SubjectC extends Controller
         $subject = new SubjectModel();
         $class = new ClassModel();
         $users = new User();
+        $allSubjectData = $subject->getAllSubData();
+        $finalarray = array();
+        foreach ($allSubjectData as $row){
+            $r = $subject->getSubjectTeacher($row->subject_id,$row->class_id);
+            $finalarray[] = (object)array(
+                'sa_id' => $row->sa_id,
+                'subject_id' => $row->subject_id,
+                'class_id' => $row->class_id,
+                'class_name' => $row->class_name,
+                'subject_name' => $row->subject_name,
+                'subject_code' => $row->subject_code,
+                'class' => $row->class_name,
+                'teachers' => count($r)
+            );
+        }
         $data = array(
             'subjects' => $subject->getSubjects(),
             'classes' => $class->getClasses(),
-            'teachers' => $users->fetchUsers()
+            'teachers' => $users->fetchUsers(),
+            'tabledata' => $finalarray
         );
+
         return view('admin.view_assign_subject', $data);
     }
 
@@ -145,5 +162,67 @@ class SubjectC extends Controller
         }
 
         return json_encode(['success' => 'Done']);
+    }
+
+    public function popAssignSubTable(){
+
+    }
+
+    public function viewSubjectTeachers($subject_id, $class_id, $class_name){
+        $subject = new SubjectModel();
+        $teachers = $subject->getSubjectTeacher($subject_id,$class_id);
+        $data = array(
+            'teachers' => $teachers,
+            'class_name' => $class_name,
+            'class_id' => $class_id,
+            'subject_id' => $subject_id
+        );
+        return view('admin.view_subject_teachers', $data);
+    }
+
+    public function popSubjectTeachersTable($subject_id, $class_id){
+        $subject = new SubjectModel();
+        $teachers = $subject->getSubjectTeacher($subject_id,$class_id);
+        $count = 1;
+        $tbody = '';
+
+        foreach ($teachers as $row){
+            $scr = '<img src="route(\'userImage\',[\'filename\' => '.$row->image.'])" alt="..." class="img-circle" style="width: 50px;height: 50px">';
+            $tbody .= '<tr>
+                                <td> '.$count.' </td>
+                                <td>'.$scr.'</td>
+                                <td>'.$row->fname.'  '. $row->lname.'</td>
+                                <td>'.$row->email.'</td>
+                                <td>'.$row->contact.'</td>
+                                <td>
+
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success">Action</button>
+                                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#" onclick="removeTeacher('.$row->st_id.')"><i class="fa fa-trash"></i> Remove</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </td>
+                            </tr>';
+
+            $count++;
+        }
+
+        return json_encode($tbody);
+
+
+    }
+
+    public function removeTeacher(Request $request){
+        $subject = new SubjectModel();
+        if($subject->unAssignSubFromUser($request->id)){
+            return $this->popSubjectTeachersTable($request->subject_id,$request->class_id);
+        }
     }
 }

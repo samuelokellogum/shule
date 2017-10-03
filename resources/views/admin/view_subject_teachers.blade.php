@@ -92,7 +92,6 @@
                             console.log(data)
                             updateTableClass(data)
                             Notify('Done', 'Teacher removed', 'success');
-                            $('#count-val').val($('#count-val').val() - 1)
                         },
                         error: function(j, textStatus, errorThrown){
                             alert(errorThrown)
