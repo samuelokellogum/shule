@@ -1,96 +1,104 @@
 @extends('main')
 @section('content')
 
-    {{--<div class="col-md-12 col-sm-12 col-xs-12">
-        <a href="{{ route('viewAssigSub') }}" class="btn btn-info pull-right">Assign Subject 1 <i class="fa fa-arrow-right"></i></a>
-    </div>--}}
+    <div class="row">
 
-    <!-- panel -->
-    <div class="col-md-4 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2><i class="fa fa-book"></i> Add Subject</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <br />
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <a href="{{ route('viewAssigSub') }}" class="btn btn-info pull-right">Assign Subject <i class="fa fa-arrow-right"></i></a>
+        </div>
 
-                <form id="form-subject" data-parsley-validate class="form-horizontal">
-                    <input type="hidden" name="_token" value="{{ Session::token() }}" />
-                    <input type="hidden" id="id" name="id" value="" />
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                        <input type="text" class="form-control" required="required"  name="subjectname" id="subject-name" placeholder="Subject name">
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                        <input type="text" class="form-control"  name="subjectcode" id="subject-code" placeholder="subject code (eg. s123)  [not required]">
-                    </div>
+        <!-- panel -->
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-book"></i> Add Subject</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
 
-                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                        <button type="submit" id="btn-add" class="btn btn-success">Submit</button>
-                        <button type="submit" id="btn-cancel" class="btn btn-success">Cancel</button>
-                    </div>
-                </form>
+                    <form id="form-subject" data-parsley-validate class="form-horizontal">
+                        <input type="hidden" name="_token" value="{{ Session::token() }}" />
+                        <input type="hidden" id="id" name="id" value="" />
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                            <input type="text" class="form-control" required="required"  name="subjectname" id="subject-name" placeholder="Subject name">
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                            <input type="text" class="form-control"  name="subjectcode" id="subject-code" placeholder="subject code (eg. s123)  [not required]">
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <button type="submit" id="btn-add" class="btn btn-success">Submit</button>
+                            <button type="submit" id="btn-cancel" class="btn btn-success">Cancel</button>
+                        </div>
+                    </form>
+                    <div class="clearfix"></div>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- /.panel -->
+        <!-- /.panel -->
 
-    <!-- panel -->
-    <div class="col-md-8 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2><i class="fa fa-table"></i> Table view</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <br />
-                <table id="dataTable-table1" class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Subject name</th>
-                        <th>Subject code</th>
-                        <th>Options</th>
-                    </tr>
-                    </thead>
+        <!-- panel -->
+        <div class="col-md-8 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-table"></i> Table view</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <table id="dataTable-table1" class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Subject name</th>
+                            <th>Subject code</th>
+                            <th>Options</th>
+                        </tr>
+                        </thead>
 
 
-                    <tbody id="subject-table">
+                        <tbody id="subject-table">
                         @if(isset($subjects))
                             <?php $count = 1 ?>
                             @foreach($subjects as $row)
                                 <tr>
-                                <td>{{ $count }}</td>
-                                <td>{{ $row->subject_name }}</td>
-                                <td>{{ $row->subject_code }}</td>
-                                <td>
+                                    <td>{{ $count }}</td>
+                                    <td>{{ $row->subject_name }}</td>
+                                    <td>{{ $row->subject_code }}</td>
+                                    <td>
 
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-success">Action</button>
-                                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#" onclick="editSubject({{ $row->subject_id }})"><i class="fa fa-edit"></i> Edit</a>
-                                            </li>
-                                            <li><a href="#" onclick="deleteSubject({{ $row->subject_id }})"><i class="fa fa-trash"></i> Delete</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-success">Action</button>
+                                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#" onclick="editSubject({{ $row->subject_id }})"><i class="fa fa-edit"></i> Edit</a>
+                                                </li>
+                                                <li><a href="#" onclick="deleteSubject({{ $row->subject_id }})"><i class="fa fa-trash"></i> Delete</a>
+                                                </li>
+                                            </ul>
+                                        </div>
 
-                                </td>
+                                    </td>
                                 </tr>
                                 <?php $count++ ?>
-                                @endforeach
-                            @endif
-                    </tbody>
-                </table>
+                            @endforeach
+                        @endif
+                        </tbody>
+                    </table>
 
+                </div>
             </div>
         </div>
+        <!-- /.panel -->
+
     </div>
-    <!-- /.panel -->
+
+
+
 
     <!-- jQuery -->
     <script src="{{ URL::to('js/jquery.min.js') }}"></script>

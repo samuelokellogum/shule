@@ -129,4 +129,5 @@ class GlobalModel extends Model
         }
         return implode($id);
     }
+
 }
