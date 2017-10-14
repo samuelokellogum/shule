@@ -303,16 +303,55 @@ Route::group(['middleware' => ['web']], function () {
        |---------------------------
        */
 
+        Route::get('/viewGradingCat',[
+            'uses' => 'GradingC@viewGradingCat',
+            'as' => 'viewGradingCat'
+        ]);
+
+        Route::post('/processGradCat',[
+            'uses' => 'GradingC@processGradingCat',
+            'as' => 'processGradCat'
+        ]);
+
+        Route::post('/updateGradCat',[
+            'uses' => 'GradingC@updateGradCat',
+            'as' => 'updateGradCat'
+        ]);
+
         Route::get('/viewGrading',[
             'uses' => 'GradingC@viewGrading',
             'as' => 'viewGrading'
         ]);
 
-        Route::post('/addGrading',[
-            'uses' => 'GradingC@addGrading',
-            'as' => 'addGrading'
+        Route::post('/processGrade',[
+            'uses' => 'GradingC@processGrading',
+            'as' => 'processGrading'
         ]);
 
+        Route::post('updateGrade',[
+            'uses' => 'GradingC@updateGrading',
+            'as' => 'updateGrade'
+        ]);
+
+        Route::post('/popGradeTable',[
+            'uses' => 'GradingC@popGrading',
+            'as' => 'popGradeTable'
+        ]);
+
+        Route::get('/viewAssignGrade',[
+            'uses' => 'GradingC@viewGradingToClass',
+            'as' => 'viewAssignGrade'
+        ]);
+
+        Route::post('/processGradeAssign',[
+            'uses' => 'GradingC@processGradeAssign',
+            'as' => 'processGradeAssign'
+        ]);
+
+        Route::post('/updateGradeAssign',[
+            'uses' => 'GradingC@updateGradeAssign',
+            'as' => 'updateGradeAssign'
+        ]);
 
 
         /*
