@@ -232,6 +232,13 @@ Route::group(['middleware' => ['web']], function () {
         ]);
 
 
+        //populate select tag for class sections
+        Route::post('/popClassSecR',[
+            'uses' => 'ClassC@popClassSections',
+            'as' => 'popClassSecR'
+        ]);
+
+
         /*
        |-------------
        |End class routes
@@ -361,6 +368,36 @@ Route::group(['middleware' => ['web']], function () {
        */
 
 
+        /*
+       |-------------
+       |Results / Marks routes
+       |---------------------------
+       */
+
+        Route::get('/viewResults',[
+            'uses' => 'ResultsC@viewResults',
+            'as' => 'viewResults'
+        ]);
+
+
+        Route::get('/addResults',[
+            'uses' => 'ResultsC@addResults',
+            'as' => 'addResults'
+        ]);
+
+        Route::get('/addResultsBulk',[
+            'uses' => 'ResultsC@addResultsBulk',
+            'as' => 'addResultsBulk'
+        ]);
+
+
+
+
+        /*
+       |-------------
+       |Results / Marks routes
+       |---------------------------
+       */
 
         /*
        |-------------
@@ -376,6 +413,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/popTmenu',[
             'uses' => 'AdminC@popMenusTable',
             'as' => 'popTmenu'
+        ]);
+
+        Route::post('/importExcelFile',[
+            'uses' => 'TestC@importExcel',
+            'as' => 'importEx'
         ]);
 
         /*

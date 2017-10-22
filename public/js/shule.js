@@ -43,6 +43,13 @@ function hideWaitDialog(){
     waitingDialog.hide();
 }
 
+function alertDialog(title, content){
+    $.alert({
+        title: title,
+        content: content,
+    });
+}
+
 function confirmDiaglog(title,confirm){
     $.confirm({
         title: 'Confirm!',

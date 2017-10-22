@@ -194,4 +194,22 @@ class ClassC extends Controller
 
         return json_encode($tbody);
     }
+
+    //populate class setion select tag by class id
+    public function popClassSections(Request $request){
+        $class = new ClassModel();
+        $res = $class->getClassSections($request->id);
+        if(count($res) <= 0){
+            $html = '<option value="">No Class section</option>';
+            return json_encode($html);
+        }
+        $html = '<option value="">Class section</option>';
+        foreach ($res as $row){
+            $html .= '<option value="'.$row->cs_id.'">'.$row->section_name.'</option>';
+        }
+
+        return json_encode($html);
+    }
+
+
 }

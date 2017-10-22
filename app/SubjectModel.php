@@ -76,6 +76,15 @@ class SubjectModel extends Model
             ->update(['status' => 0]);
     }
 
+    public function getClassSubjects($classId){
+        return DB::table('subject_assign')
+            ->join('class','subject_assign.classid','=','class.class_id')
+            ->join('subject','subject_assign.subjectid','=','subject.subject_id')
+            ->where('subject_assign.classid', $classId)
+            ->where('subject_assign.status', 1)
+            ->get();
+    }
+
     public function assignSubToUser($teacherData){
         return DB::table('subject_teachers')->insert($teacherData);
     }

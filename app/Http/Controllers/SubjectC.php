@@ -225,4 +225,21 @@ class SubjectC extends Controller
             return $this->popSubjectTeachersTable($request->subject_id,$request->class_id);
         }
     }
+
+    // populate subjject select tag by class id
+    public function popClassSubject(Request $request){
+        $subject = new SubjectModel();
+        $res = $subject->getClassSubjects($request->id);
+        if(count($res) <= 0){
+            $html = '<option value="">No Subjects for Class</option>';
+            return json_encode($html);
+        }
+        $html = '<option value="">Class section</option>';
+        foreach ($res as $row){
+            $html .= '<option value="'.$row->subject_id.'">'.$row->subject_name.' '.$row->subject_code.'</option>';
+        }
+
+        return json_encode($html);
+
+    }
 }
