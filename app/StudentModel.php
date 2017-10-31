@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class StudentModel extends Model
 {
     //
+
+    public function registerStudent(){
+
+    }
 }
