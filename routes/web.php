@@ -91,6 +91,32 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'menuView'
         ]);
 
+
+        /*
+         | -------------
+         |Student Routes
+         | ------------
+         */
+
+        Route::get('/viewStudents',[
+            'uses' => 'StudentC@viewStudents',
+            'as' => 'viewStudents'
+        ]);
+
+        Route::get('/viewStudentById',[
+            'uses' => 'StudentC@viewStudentById',
+            'as' => 'viewStudentById'
+        ]);
+
+        Route::get('/addStudent',[
+            'uses' => 'StudentC@addStudent',
+            'as' => 'addStudents'
+        ]);
+
+        Route::post('/addStudent',[
+        'uses' => 'StudentC@addStudent',
+        'as' => 'addStudents'
+        ]);
         /*
        |-------------
        |Users routes
@@ -147,6 +173,7 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'addUser'
         ]);
 
+
         Route::get('/getUserById/{userid}',[
             'uses' => 'AdminC@getUserById',
             'as' => 'viewUserById'
@@ -156,7 +183,6 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'GlobalC@getUserImage',
             'as' => 'userImage'
         ]);
-
 
         /*
        |-------------

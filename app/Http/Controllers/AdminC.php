@@ -222,8 +222,6 @@ class AdminC extends Controller
                 return redirect()->route('viewUsers');
             }
         }
-
-
     }
 
     public function getUserById($userId){
@@ -236,8 +234,4 @@ class AdminC extends Controller
         );
         return view('admin.add_user', $data);
     }
-
-
-
-
 }
