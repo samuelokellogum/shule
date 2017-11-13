@@ -3,7 +3,8 @@
     <div class="row">
 
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <a href="{{ route('addStudents') }}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add Student</a>
+            <a href="#" class="file btn btn-success pull-right" data-show-upload="false"><i class="fa fa-excel"></i> Import Data</a>
+            <a href="{{ route('addStudent') }}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add Student</a>            
         </div>
 
         <!-- panel -->
@@ -22,6 +23,7 @@
                             <th>No</th>
                             <th>Student Name</th>
                             <th>Student Number</th>
+                            <th>Admission Year</th>
                             <th>Image </th>
                             <th>Status</th>
                             <th>Action</th>
@@ -29,13 +31,14 @@
                         </thead>
 
                         <tbody>
-                        @if(isset($users))
+                        @if(isset($student))
                             <?php $count = 1; ?>
-                            @foreach($users as $row)
+                            @foreach($student as $row)
                                 <tr>
                                     <td>{{ $count }}</td>
                                     <td>{{ $row->fname}} {{ $row->lname }}</td>
                                     <td>{{ $row->student_id }}</td>
+                                    <td>{{ $row->adminYear }}</td>
                                     <td><img src="{{ route('userImage',['filename' => $row->image])}}" alt="..." class="img-circle" style="width: 50px;height: 50px"></td>
                                     <td>{{ $row->status }}</td>
                                     <td>

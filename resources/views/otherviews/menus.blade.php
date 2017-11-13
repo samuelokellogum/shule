@@ -97,7 +97,6 @@
                 if(id !=  ""){
                     populateMenu(id);
                 }
-
             });
 
             $('#btn-assign').click(function (e) {

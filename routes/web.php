@@ -103,20 +103,31 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'viewStudents'
         ]);
 
+        Route::post('/viewStudents',[
+            'uses' => 'StudentC@viewStudents',
+            'as' => 'viewStudents'
+        ]);
+
         Route::get('/viewStudentById',[
             'uses' => 'StudentC@viewStudentById',
             'as' => 'viewStudentById'
         ]);
 
+        Route::post('/addStudent',[
+            'uses' => 'StudentC@addStudent',
+            'as' => 'addStudent'
+        ]);
+       
         Route::get('/addStudent',[
             'uses' => 'StudentC@addStudent',
-            'as' => 'addStudents'
+            'as' => 'addStudent'
         ]);
 
-        Route::post('/addStudent',[
-        'uses' => 'StudentC@addStudent',
-        'as' => 'addStudents'
+        Route::get('/getDataImport', [
+            'uses' => 'StudentC@getDataImport',
+            'as' => 'getDataImport'
         ]);
+        
         /*
        |-------------
        |Users routes
