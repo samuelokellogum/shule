@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class StudentModel extends Model
 {
+    public $table = 'student';
+    public $timestamps = 'false';
+    public $primaryKey = 'user_id';
+    public $fillable = ['fname', 'lname', 'dob', 'adminYear', 'image' ];
+   
     public function getStudents(){
         return DB::table('student')->get();
     }
@@ -16,7 +21,7 @@ class StudentModel extends Model
         return DB::table('student')->get();
     }
 
-    public function addStudent($data)
+    public static function addStudent($data)
     {
         return DB::table('student')->insert($data);
     }
@@ -44,21 +49,11 @@ class StudentModel extends Model
 
     public function getStudentsById($id)
     {
-        return DB::table('student')
-            ->where('id', $id)
+        return DB::table('student')::find(student_id)
+            ->where('student_id', $id)
             ->first();
     }
 
-    public function generateStudentNo(){
-        //generate password
-        $num = '1234567890';
-        $id = array(); //remember to declare $id as an array
-        $length = strlen($num) - 1; //put the length -1 in cache
-        for ($i = 0; $i < 12; $i++) {
-            $p = mt_rand(0, $length);
-            $id[] = $num[$p];
-        }
-        return implode($id);
-    }
+   
 
 }

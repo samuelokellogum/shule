@@ -97,6 +97,8 @@ Route::group(['middleware' => ['web']], function () {
          |Student Routes
          | ------------
          */
+        Route::resource('students', 'StudentC');       
+     
 
         Route::get('/viewStudents',[
             'uses' => 'StudentC@viewStudents',
@@ -108,8 +110,13 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'viewStudents'
         ]);
 
-        Route::get('/viewStudentById',[
-            'uses' => 'StudentC@viewStudentById',
+        Route::post('/deleteStudent',[
+            'uses' => 'StudentC@destroy',
+            'as' => 'deleteStudent'
+        ]);
+
+        Route::get('/viewStudentById/{id}',[
+            'uses' => 'StudentC@update',
             'as' => 'viewStudentById'
         ]);
 
@@ -118,15 +125,19 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'addStudent'
         ]);
        
-        Route::get('/addStudent',[
-            'uses' => 'StudentC@addStudent',
-            'as' => 'addStudent'
+        Route::get('/create',[
+            'uses' => 'StudentC@create',
+            'as' => 'createStudent'
         ]);
 
         Route::get('/getDataImport', [
             'uses' => 'StudentC@getDataImport',
             'as' => 'getDataImport'
         ]);
+
+        Route::get('importExport', 'StudentC@importExport');
+        Route::get('downloadExcel/{type}', 'StudentC@downloadExcel');
+        Route::post('importExcel', 'StudentC@importExcel');
         
         /*
        |-------------
@@ -390,13 +401,11 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'updateGradeAssign'
         ]);
 
-
         /*
        |-------------
        |End grading routes
        |---------------------------
        */
-
 
 
         /*
@@ -421,6 +430,7 @@ Route::group(['middleware' => ['web']], function () {
        |---------------------------
        */
     });
+
 });
 
 

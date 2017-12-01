@@ -17,7 +17,7 @@
                 <div class="x_content">
                     <br />
 
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ route('viewStudents') }}" enctype="multipart/form-data">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ route('addStudent') }}" enctype="multipart/form-data">
                         <input type="hidden" name="id" value="@if(isset($id)) {{ $id }} @endif">
                         <input type="hidden" name="_token" value="{{ Session::token() }}" />
                         <input type="hidden" name="task" value="@if(isset($task)) {{ $task }}@endif">
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Admission Date <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="adminyear" class="datepicker form-control col-md-7 col-xs-12" required="required" value="@if(isset($student)) {{ $student->adminYear }} @endif" class="form-control col-md-7 col-xs-12" >
+                                <input  name="adminyear" class="datepicker form-control col-md-7 col-xs-12" required="required" value="@if(isset($student)) {{ $student->adminYear }} @endif" class="form-control col-md-7 col-xs-12" >
                                  <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
                             </div>
                         </div>
